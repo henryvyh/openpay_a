@@ -17,6 +17,6 @@ const OpenpayA = NativeModules.OpenpayA
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
+export function multiply(a: number, b: number): Promise<string> {
   return OpenpayA.multiply(a, b);
 }

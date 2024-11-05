@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
 import { multiply } from 'openpay_a';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+  const [result, setResult] = useState<string | undefined>();
 
   useEffect(() => {
-    multiply(3, 7).then(setResult);
+    console.log(setResult);
+
+    // multiply(3, 7).then(setResult);
   }, []);
 
   return (
     <View style={styles.container}>
       <Text>Result: {result}</Text>
+      <Button
+        title="Multiply"
+        onPress={() => multiply(3, 7).then((e) => console.log(e))}
+      />
     </View>
   );
 }

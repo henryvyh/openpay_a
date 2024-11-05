@@ -8,7 +8,7 @@ buildscript {
   }
 
   dependencies {
-    classpath "com.android.tools.build:gradle:7.2.1"
+    classpath "com.android.tools.build:gradle:3.5.3"
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
@@ -21,6 +21,17 @@ def reactNativeArchitectures() {
 
 def isNewArchitectureEnabled() {
   return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        flatDir {
+        dirs 'libs'
+        dirs project(':openpay_a').file('libs')
+      }
+  }
 }
 
 apply plugin: "com.android.library"
@@ -66,6 +77,17 @@ android {
 
   }
 
+  packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+
   buildTypes {
     release {
       minifyEnabled false
@@ -95,5 +117,17 @@ dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+implementation 'com.google.guava:guava:28.2-android'
+
+implementation (name: 'openpay-android-release', ext: 'aar')
+implementation 'androidx.fragment:fragment:1.0.0'
+// implementation 'com.android.support:support-fragment:28.0.0'
+
+implementation 'com.google.http-client:google-http-client:1.28.0'
+implementation 'com.google.http-client:google-http-client-jackson2:1.28.0'
+implementation 'com.fasterxml.jackson.core:jackson-core:2.9.8'
+implementation 'org.slf4j:slf4j-log4j12:1.7.25'
+
 }
 
