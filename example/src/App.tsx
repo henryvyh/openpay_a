@@ -16,7 +16,7 @@ export default function App() {
       <Text>Result: {result}</Text>
       <Button
         title="Multiply"
-        onPress={() => multiply(3, 7).then((e) => console.log(e))}
+        onPress={() => multiply(3, 7).then((e) => setResult(e))}
       />
     </View>
   );

@@ -36,7 +36,7 @@
     "!**/__mocks__",
     "!**/.*"
   ],
-  "scripts": {    
+  "scripts": {
     "test": "jest",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -92,6 +92,7 @@
     "react-native": "*"
   },
   "packageManager": "yarn@3.6.1",
+  
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
